@@ -1,26 +1,32 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class UIManager : MonoBehaviour 
 {
+	AICharacterControl m_enemyAI;
+
+	[SerializeField] Transform m_playerTransform;
+
 	public GameObject helpButton , helpObj , quitButton;
 
 	void Start() 
 	{
-	
+		m_enemyAI = FindObjectOfType<AICharacterControl>();
+		Time.timeScale = 0;
 	}
 
 	public void Continue()
 	{
-		//Always create UI freshly to avoid complications
+		m_enemyAI.target = m_playerTransform;
 		helpButton.SetActive(true);
 		helpObj.SetActive(false);
 		quitButton.SetActive(true);
+		Time.timeScale = 1;
 	}
 
 	public void Help()
 	{
-		//Always create UI freshly to avoid complications
 		helpButton.SetActive(false);
 		helpObj.SetActive(true);
 		quitButton.SetActive(false);
@@ -28,7 +34,6 @@ public class UIManager : MonoBehaviour
 
 	public void Quit()
 	{
-		//Always create UI freshly to avoid complications
 		Application.Quit();
 	}
 }
