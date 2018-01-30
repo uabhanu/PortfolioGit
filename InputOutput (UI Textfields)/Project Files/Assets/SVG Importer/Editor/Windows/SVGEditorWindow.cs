@@ -890,10 +890,10 @@ namespace SVGImporter
 			Bounds bounds = mesh.bounds;
 			float magnitude = bounds.extents.magnitude;
 			float num = 4f * magnitude;
-			previewUtility.m_Camera.transform.position = -Vector3.forward * num;
-			previewUtility.m_Camera.transform.rotation = Quaternion.identity;
-			previewUtility.m_Camera.nearClipPlane = num - magnitude * 1.1f;
-			previewUtility.m_Camera.farClipPlane = num + magnitude * 1.1f;
+			previewUtility.camera.transform.position = -Vector3.forward * num;
+			previewUtility.camera.transform.rotation = Quaternion.identity;
+			previewUtility.camera.nearClipPlane = num - magnitude * 1.1f;
+			previewUtility.camera.farClipPlane = num + magnitude * 1.1f;
 			
 			Quaternion quaternion = Quaternion.identity;
 			Vector3 pos = -bounds.center;
@@ -903,7 +903,7 @@ namespace SVGImporter
 			int meshSubset = materials.Length;
 			if (materials != null && materials.Length > 0)
 			{
-				previewUtility.m_Camera.clearFlags = CameraClearFlags.Nothing;
+				previewUtility.camera.clearFlags = CameraClearFlags.Nothing;
 				if (meshSubset < 0 || meshSubset >= subMeshCount)
 				{
 					for (int i = 0; i < subMeshCount; i++)
@@ -915,7 +915,7 @@ namespace SVGImporter
 				{
 					previewUtility.DrawMesh(mesh, pos, quaternion, materials[0], -1);
 				}
-				previewUtility.m_Camera.Render();
+				previewUtility.camera.Render();
 			}
 			Unsupported.SetRenderSettingsUseFogNoDirty(fog);
 		}
