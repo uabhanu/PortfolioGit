@@ -1,11 +1,6 @@
-﻿using OneSignalPush.MiniJSON;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Xml;
 using UnityEngine;
-using UnityEngine.Advertisements;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TextFields : MonoBehaviour 
@@ -20,7 +15,31 @@ public class TextFields : MonoBehaviour
 
 	[SerializeField] private Text firstNameText;
 
-	IEnumerator TextFieldsColour()
+    void Start()
+    {
+        firstNameColour = firstNameImage.color;
+        lastNameColour = lastNameImage.color;
+        OneSignal.Init("e2fd8d0d-7def-4522-9c43-697144d10458", "1007594176579", HandleNotification);
+        signInPasswordColour = signInPasswordImage.color;
+        signInUsernameColour = signInUsernameImage.color;
+        signUpPasswordColour = signUpPasswordImage.color;
+        signUpUsernameColour = signUpUsernameImage.color;
+
+        StartCoroutine("TextFieldsColour");
+    }
+
+    void Update()
+    {
+        firstNameVariable = firstName.text;
+        firstNameText.text = firstNameVariable;
+        lastNameVariable = lastName.text;
+        signInPasswordVariable = signInPassword.text;
+        signInUsernameVariable = signInUsername.text;
+        signUpPasswordVariable = signUpPassword.text;
+        signUpUsernameVariable = signUpUsername.text;
+    }
+
+    IEnumerator TextFieldsColour()
 	{
 		yield return new WaitForSeconds(1f);
 
@@ -68,26 +87,26 @@ public class TextFields : MonoBehaviour
 		
 	}
 
-	private void HandleShowResult(ShowResult result)
-	{
-		switch (result)
-		{
-			case ShowResult.Finished:
-				Debug.Log("The ad was successfully shown.");
-				//
-				// YOUR CODE TO REWARD THE GAMER
-				// Give coins etc.
-			break;
+	//private void HandleShowResult(ShowResult result)
+	//{
+	//	switch (result)
+	//	{
+	//		case ShowResult.Finished:
+	//			Debug.Log("The ad was successfully shown.");
+	//			//
+	//			// YOUR CODE TO REWARD THE GAMER
+	//			// Give coins etc.
+	//		break;
 
-			case ShowResult.Skipped:
-				Debug.Log("The ad was skipped before reaching the end.");
-			break;
+	//		case ShowResult.Skipped:
+	//			Debug.Log("The ad was skipped before reaching the end.");
+	//		break;
 
-			case ShowResult.Failed:
-				Debug.LogError("The ad failed to be shown.");
-			break;
-		}
-	}
+	//		case ShowResult.Failed:
+	//			Debug.LogError("The ad failed to be shown.");
+	//		break;
+	//	}
+	//}
 
 	public void Quit()
 	{
@@ -159,36 +178,12 @@ public class TextFields : MonoBehaviour
 		signInFailedObj.SetActive(false);
 	}
 
-	public void UnityAds()
-	{
-		if (Advertisement.IsReady("rewardedVideo"))
-		{
-			var options = new ShowOptions { resultCallback = HandleShowResult };
-			Advertisement.Show("rewardedVideo" , options);
-		}
-	}
-
-	void Start() 
-	{
-		firstNameColour = firstNameImage.color;
-		lastNameColour = lastNameImage.color;
-		OneSignal.Init("e2fd8d0d-7def-4522-9c43-697144d10458" , "1007594176579" , HandleNotification);
-		signInPasswordColour = signInPasswordImage.color;
-		signInUsernameColour = signInUsernameImage.color;
-		signUpPasswordColour = signUpPasswordImage.color;
-		signUpUsernameColour = signUpUsernameImage.color;
-
-		StartCoroutine("TextFieldsColour");
-	}
-
-	void Update() 
-	{
-		firstNameVariable = firstName.text;
-		firstNameText.text = firstNameVariable;
-		lastNameVariable = lastName.text;
-		signInPasswordVariable = signInPassword.text;
-		signInUsernameVariable = signInUsername.text;
-		signUpPasswordVariable = signUpPassword.text;
-		signUpUsernameVariable = signUpUsername.text;
-	}
+	//public void UnityAds()
+	//{
+	//	if (Advertisement.IsReady("rewardedVideo"))
+	//	{
+	//		var options = new ShowOptions { resultCallback = HandleShowResult };
+	//		Advertisement.Show("rewardedVideo" , options);
+	//	}
+	//}
 }
