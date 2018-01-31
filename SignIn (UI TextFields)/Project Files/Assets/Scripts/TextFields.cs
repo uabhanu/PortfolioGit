@@ -5,27 +5,18 @@ using UnityEngine.UI;
 
 public class TextFields : MonoBehaviour 
 {
-	private Color firstNameColour , lastNameColour , signInPasswordColour , signUpPasswordColour , signInUsernameColour , signUpUsernameColour;
+	Color firstNameColour , lastNameColour , signInPasswordColour , signUpPasswordColour , signInUsernameColour , signUpUsernameColour;
+    string firstNameVariable , lastNameVariable , signInPasswordVariable , signUpPasswordVariable , signInUsernameVariable , signUpUsernameVariable;
 
-	[SerializeField] private GameObject signInPasswordObj , signUpPasswordObj , signInQuitObj , signUpQuitObj , signInFormObj , signUpFormObj , signInFailedObj , signInSuccessObj , signUpSuccessObj , signInUsernameObj , signUpUsernameObj;
-	[SerializeField] private Image firstNameImage , lastNameImage , signInPasswordImage , signUpPasswordImage , signInUsernameImage , signUpUsernameImage;
-	[SerializeField] private InputField firstName , lastName , signInPassword , signUpPassword , signInUsername , signUpUsername;
-
-	private string firstNameVariable , lastNameVariable , signInPasswordVariable , signUpPasswordVariable , signInUsernameVariable , signUpUsernameVariable;
-
-	[SerializeField] private Text firstNameText;
+    [SerializeField] GameObject m_signInFailedObj , m_signInFormObj , m_signInSuccessObj , m_signUpFormObj , m_signUpSuccessObj;
+	[SerializeField] Image firstNameImage , lastNameImage , signInPasswordImage , signUpPasswordImage , signInUsernameImage , signUpUsernameImage;
+	[SerializeField] InputField firstName , lastName , signInPassword , signUpPassword , signInUsername , signUpUsername;
+	[SerializeField] Text firstNameText;
 
     void Start()
     {
-        firstNameColour = firstNameImage.color;
-        lastNameColour = lastNameImage.color;
-        OneSignal.Init("e2fd8d0d-7def-4522-9c43-697144d10458", "1007594176579", HandleNotification);
-        signInPasswordColour = signInPasswordImage.color;
-        signInUsernameColour = signInUsernameImage.color;
-        signUpPasswordColour = signUpPasswordImage.color;
-        signUpUsernameColour = signUpUsernameImage.color;
-
-        StartCoroutine("TextFieldsColour");
+        //OneSignal.Init("e2fd8d0d-7def-4522-9c43-697144d10458", "1007594176579", HandleNotification);
+        //StartCoroutine("TextFieldsColour");
     }
 
     void Update()
@@ -78,8 +69,8 @@ public class TextFields : MonoBehaviour
 		
 	public void Continue()
 	{
-		signInFormObj.SetActive(true);
-		signUpFormObj.SetActive(false);
+		m_signInFormObj.SetActive(true);
+		m_signUpFormObj.SetActive(false);
 	}
 
 	private static void HandleNotification(string message , Dictionary<string , object> additionalData , bool isActive) 
@@ -119,15 +110,12 @@ public class TextFields : MonoBehaviour
 		{
 			if(signInUsername.text == signUpUsernameVariable && signInPassword.text == signUpPasswordVariable) 
 			{
-				signInPasswordObj.SetActive(false);
-				signInUsernameObj.SetActive(false);
-				signInQuitObj.SetActive(true);
-				signInSuccessObj.SetActive(true);
+				m_signInSuccessObj.SetActive(true);
 			} 
 
 			if(signInUsername.text != signUpUsernameVariable || signInPassword.text != signUpPasswordVariable) 
 			{
-				signInFailedObj.SetActive(true);
+				m_signInFailedObj.SetActive(true);
 			}
 		}
 			
@@ -146,10 +134,8 @@ public class TextFields : MonoBehaviour
 	{
 		if(firstNameVariable != "" && lastNameVariable != "" && signUpPasswordVariable != "" && signUpUsernameVariable != "") 
 		{
-			signUpPasswordObj.SetActive(false);
-			signUpQuitObj.SetActive(false);
-			signUpSuccessObj.SetActive(true);
-			signUpUsernameObj.SetActive(false);
+			m_signUpFormObj.SetActive(false);
+            m_signUpSuccessObj.SetActive(true);
 		} 
 			
 		if(firstNameVariable == "")
@@ -175,7 +161,8 @@ public class TextFields : MonoBehaviour
 
 	public void TryAgain()
 	{
-		signInFailedObj.SetActive(false);
+		m_signInFailedObj.SetActive(false);
+        m_signInFormObj.SetActive(true);
 	}
 
 	//public void UnityAds()
