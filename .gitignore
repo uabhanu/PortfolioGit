@@ -34,10 +34,5 @@ sysinfo.txt
 *.unitypackage
 Library
 obj
-UnityPackageManager
-UnityPackageManager
-Library
-obj
 Temp
 UnityPackageManager
-Library
