@@ -1,51 +1,46 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Rotator : MonoBehaviour 
 {
-	public float spinSpeed;
-	public bool rotation;
+	float m_spinSpeed;
 
-	void Start () 
+    public bool m_rotation;
+
+    void Update()
+    {
+        if(m_rotation)
+        {
+            Rotation();
+        }
+
+        if(!m_rotation)
+        {
+            StopRotation();
+        }
+    }
+
+    void Rotation()
 	{
-	
-	}
-
-	void Update () 
-	{
-		if(rotation)
-		{
-			Rotation();
-		}
-
-		if(!rotation)
-		{
-			StopRotation();
-		}
-	}
-
-	void Rotation()
-	{
-		spinSpeed = 50f;
-		transform.Rotate(0 , spinSpeed * Time.deltaTime , 0);
+		m_spinSpeed = 50f;
+		transform.Rotate(0 , m_spinSpeed * Time.deltaTime , 0);
 	}
 
 	void StopRotation()
 	{
-		spinSpeed = 0f;
-		transform.Rotate(0 , spinSpeed * Time.deltaTime , 0);
+		m_spinSpeed = 0f;
+		transform.Rotate(0 , m_spinSpeed * Time.deltaTime , 0);
 	}
 
 	void OnMouseDown()
 	{
-		if(spinSpeed > 0f)
+		if(m_spinSpeed > 0f)
 		{
-			rotation = false;
+			m_rotation = false;
 		}
 
-		if(spinSpeed == 0f) 
+		if(m_spinSpeed == 0f) 
 		{
-			rotation = true;
+			m_rotation = true;
 		}
 	}
 }

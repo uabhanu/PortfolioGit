@@ -2,28 +2,25 @@
 
 public class ColourChanger : MonoBehaviour 
 {
-    Color objColour;
-	Material objMat;
+	Material m_material;
 
     void Start()
     {
-        objMat = GetComponent<MeshRenderer>().material;    
+        m_material = GetComponent<MeshRenderer>().material;    
     }
 
     void OnMouseDown()
 	{
-        objColour = objMat.color;
-
-		if(objColour == Color.red)
+		if(m_material.color == Color.red)
 		{
 			Debug.Log("If red colour");
-			objMat.color = Color.green;
+			m_material.color = Color.green;
 		}
 
-		if(objColour == Color.green)
+		else if(m_material.color == Color.green)
 		{
 			Debug.Log("If green colour");
-			objMat.color = Color.red;
+			m_material.color = Color.red;
 		}
 	}
 }

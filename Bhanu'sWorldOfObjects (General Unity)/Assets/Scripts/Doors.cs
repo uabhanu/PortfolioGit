@@ -1,32 +1,28 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Doors : MonoBehaviour 
 {
-	Animator anim;
+	Animator m_anim;
+    bool m_doorsOpen;
 
 	void Start()
 	{
-		anim = GetComponent<Animator>();
+		m_anim = GetComponent<Animator>();
+        Time.timeScale = 0;
 	}
 
-	void OnTriggerEnter(Collider col)
-	{
-		if(col.gameObject.tag.Equals("Player"))
-		{
-			anim.SetBool("Open" , true);
-			anim.SetBool("Close" , false);
-			//DoorsState("Open");
-		}
-	}
-
-	void OnTriggerExit(Collider col)
-	{
-		if(col.gameObject.tag.Equals("Player"))
-		{
-			anim.SetBool("Open" , false);
-			anim.SetBool("Close" , true);
-			//DoorsState("Close");
-		}
-	}
+    void Update()
+    {
+        if(Time.timeScale == 0)
+        {
+            return;
+        }
+        
+        if(Input.GetButtonDown("Action"))
+        {
+            m_anim.SetBool("Open" , !m_doorsOpen);
+            m_anim.SetBool("Close" , m_doorsOpen);
+            m_doorsOpen = !m_doorsOpen;
+        }
+    }
 }

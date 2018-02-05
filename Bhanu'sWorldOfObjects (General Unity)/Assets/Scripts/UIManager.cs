@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UIManager : MonoBehaviour 
 {
-	[SerializeField]
-	private GameObject helpObj , playerObj;
+	[SerializeField] GameObject helpObj , playerObj;
 
 	public void OK() 
 	{
 		helpObj.SetActive(false);
 		playerObj.SetActive(true);
+        Time.timeScale = 1;
 	}
 }
