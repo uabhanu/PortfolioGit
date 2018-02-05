@@ -1,23 +1,19 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ColourChanger : MonoBehaviour 
 {
-	public Material objMat;
-	public Color objColour;
+    Color objColour;
+	Material objMat;
 
-	void Start() 
-	{
-		
-	}
+    void Start()
+    {
+        objMat = GetComponent<MeshRenderer>().material;    
+    }
 
-	void Update() 
+    void OnMouseDown()
 	{
-		objColour = objMat.color;
-	}
-		
-	void OnMouseDown()
-	{
+        objColour = objMat.color;
+
 		if(objColour == Color.red)
 		{
 			Debug.Log("If red colour");
