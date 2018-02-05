@@ -2,7 +2,7 @@
 
 public class Resizer : MonoBehaviour 
 {
-	[SerializeField] bool m_increasable;
+	bool m_shouldIncrease;
     float m_scaleRate = 0.01f;
 	Material m_cubeMat;
     Rotator m_rotationScript;
@@ -15,12 +15,17 @@ public class Resizer : MonoBehaviour
 
 	void Update() 
 	{
-		if(m_increasable)
+        if(Time.timeScale == 0)
+        {
+            return;
+        }
+
+		if(m_shouldIncrease)
 		{
 			IncreaseSize();
 		}
 
-		if(!m_increasable) 
+		if(!m_shouldIncrease) 
 		{
 			DecreaseSize();
 		}
@@ -44,14 +49,14 @@ public class Resizer : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		if(m_cubeMat.color == Color.green && !m_rotationScript.m_rotation && !m_increasable)
+		if(m_cubeMat.color == Color.green && !m_rotationScript.m_shouldRotate && !m_shouldIncrease)
 		{
-			m_increasable = true;
+			m_shouldIncrease = true;
 		}
 
-		else if(m_cubeMat.color == Color.red || m_rotationScript.m_rotation || m_increasable)
+		else if(m_cubeMat.color == Color.red || m_rotationScript.m_shouldRotate || m_shouldIncrease)
 		{
-			m_increasable = false;
+			m_shouldIncrease = false;
 		}
 	}
 }

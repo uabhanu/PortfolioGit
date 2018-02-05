@@ -2,25 +2,25 @@
 
 public class ColourChanger : MonoBehaviour 
 {
-	Material m_material;
+	Material m_cubeMaterial;
 
     void Start()
     {
-        m_material = GetComponent<MeshRenderer>().material;    
+        m_cubeMaterial = GetComponent<MeshRenderer>().material;    
     }
 
     void OnMouseDown()
 	{
-		if(m_material.color == Color.red)
+		if(m_cubeMaterial.color == Color.red)
 		{
 			Debug.Log("If red colour");
-			m_material.color = Color.green;
+			m_cubeMaterial.color = Color.green;
 		}
 
-		else if(m_material.color == Color.green)
+		else if(m_cubeMaterial.color == Color.green)
 		{
 			Debug.Log("If green colour");
-			m_material.color = Color.red;
+			m_cubeMaterial.color = Color.red;
 		}
 	}
 }

@@ -8,7 +8,6 @@ public class Doors : MonoBehaviour
 	void Start()
 	{
 		m_anim = GetComponent<Animator>();
-        Time.timeScale = 0;
 	}
 
     void Update()

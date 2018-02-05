@@ -2,45 +2,30 @@
 
 public class Rotator : MonoBehaviour 
 {
-	float m_spinSpeed;
+	float m_spinSpeed = 50f;
 
-    public bool m_rotation;
+    public bool m_shouldRotate;
 
     void Update()
     {
-        if(m_rotation)
+        if(m_shouldRotate)
         {
-            Rotation();
+            Rotate();
         }
 
-        if(!m_rotation)
+        else if(!m_shouldRotate || Time.timeScale == 0)
         {
-            StopRotation();
+            return;
         }
     }
 
-    void Rotation()
+    void Rotate()
 	{
-		m_spinSpeed = 50f;
-		transform.Rotate(0 , m_spinSpeed * Time.deltaTime , 0);
-	}
-
-	void StopRotation()
-	{
-		m_spinSpeed = 0f;
 		transform.Rotate(0 , m_spinSpeed * Time.deltaTime , 0);
 	}
 
 	void OnMouseDown()
 	{
-		if(m_spinSpeed > 0f)
-		{
-			m_rotation = false;
-		}
-
-		if(m_spinSpeed == 0f) 
-		{
-			m_rotation = true;
-		}
+		m_shouldRotate = !m_shouldRotate;
 	}
 }

@@ -4,7 +4,12 @@ public class UIManager : MonoBehaviour
 {
 	[SerializeField] GameObject helpObj , playerObj;
 
-	public void OK() 
+    void Start()
+    {
+        Time.timeScale = 0;        
+    }
+
+    public void OK() 
 	{
 		helpObj.SetActive(false);
 		playerObj.SetActive(true);
