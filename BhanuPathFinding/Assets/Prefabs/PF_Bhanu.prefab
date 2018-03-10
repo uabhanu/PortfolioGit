@@ -22,8 +22,6 @@ GameObject:
   - component: {fileID: 95032957422027652}
   - component: {fileID: 136265061920291280}
   - component: {fileID: 54330092965970976}
-  - component: {fileID: 114203346905453572}
-  - component: {fileID: 114347746465749920}
   - component: {fileID: 114125496756266234}
   - component: {fileID: 114613648019502600}
   m_Layer: 8
@@ -2593,53 +2591,6 @@ MonoBehaviour:
   direction: 0
   verticalVelocity: 0
   velocity: 0
---- !u!114 &114203346905453572
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057746785578172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19c789670a80b704eba4dfebed94a111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  comment: "Hi there :)\n\nThank you for downloading our Third Person Controller,
-    don't forget to leave a review if you like our work. We hope that this Free version
-    can help you start your project.\n \nBest regards, \nInvector Team\n\nvStore:
-    https://sellfy.com//invector\nvForum: http://invector.proboards.com/\r\nvWebsite:
-    http://www.invector.xyz/"
---- !u!114 &114347746465749920
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057746785578172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a1bfe72fbc87d04e885296b53e91c66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 4764755696598848}
-  smoothCameraRotation: 12
-  cullingLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  lockCamera: 0
-  rightOffset: 0
-  defaultDistance: 2.5
-  height: 1.4
-  smoothFollow: 10
-  xMouseSensitivity: 3
-  yMouseSensitivity: 3
-  yMinLimit: -40
-  yMaxLimit: 80
-  indexList: 0
-  indexLookPoint: 0
-  offSetPlayerPivot: 0
-  currentStateName: 
-  currentTarget: {fileID: 0}
-  movementSpeed: {x: 0, y: 0}
 --- !u!114 &114613648019502600
 MonoBehaviour:
   m_ObjectHideFlags: 1
