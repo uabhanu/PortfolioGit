@@ -198,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 557762539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.9, y: 0.5, z: 0}
+  m_LocalPosition: {x: -7.86, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -215,6 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01654de19e29e2a4fa654da4954c5291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isFollowingPlayer: 0
+  _obstacleDetected: 1
   _lineOfSight: 5
   _moveSpeed: 2
   _offset: 2
@@ -243,7 +245,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4764755696598848, guid: dd162fc1d504ad84c8c654dcbe579c30, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.13
       objectReference: {fileID: 0}
     - target: {fileID: 4764755696598848, guid: dd162fc1d504ad84c8c654dcbe579c30, type: 2}
       propertyPath: m_LocalPosition.y
@@ -563,7 +565,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1571244571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.91, y: 0.5, z: -0.28}
+  m_LocalPosition: {x: 5.76, y: 0.5, z: -0.28}
   m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
