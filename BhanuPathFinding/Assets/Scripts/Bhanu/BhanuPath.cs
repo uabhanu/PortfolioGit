@@ -2,26 +2,49 @@
 
 public class BhanuPath : MonoBehaviour 
 {
-    [SerializeField] float m_moveSpeed , m_offset;
-    [SerializeField] Transform m_playerToLookAt;
+    Ray _ray;
+    RaycastHit _hit;
+
+    [SerializeField] float _lineOfSight , _moveSpeed , _offset;
+    [SerializeField] Transform _playerToLookAt;
 
 	void Start() 
     {
 		
 	}
 	
-	void Update() 
+	void Update()
     {
         if(Time.timeScale == 0)
         {
             return;
         }
 
-        transform.LookAt(m_playerToLookAt.position);
+        AvoidObstacles();
+        FollowPlayer();
+    }
 
-        if((transform.position - m_playerToLookAt.position).magnitude > m_offset)
+    void AvoidObstacles()
+    {
+        Debug.DrawRay(transform.position , transform.TransformDirection(Vector3.forward) * _lineOfSight , Color.red);
+        _ray = new Ray(transform.position , transform.TransformDirection(Vector3.forward) * _lineOfSight);
+
+        if(Physics.Raycast(_ray , out _hit , _lineOfSight))
         {
-            transform.Translate(0f , 0f , m_moveSpeed * Time.deltaTime);
+            if(_hit.collider.gameObject.layer == 11)
+            {
+                //TODO Evade Logic here, Look into Slerp
+            }
+        }
+    }
+
+    void FollowPlayer()
+    {
+        transform.LookAt(_playerToLookAt.position);
+
+        if((transform.position - _playerToLookAt.position).magnitude > _offset)
+        {
+            transform.Translate(0f , 0f , _moveSpeed * Time.deltaTime);
         }
     }
 }
