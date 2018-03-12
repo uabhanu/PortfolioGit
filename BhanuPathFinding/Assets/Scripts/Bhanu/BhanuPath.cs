@@ -21,9 +21,10 @@ public class BhanuPath : MonoBehaviour
             return;
         }
 
+        _isFollowingPlayer = !_obstacleDetected;
         DetectObstacle();
-        Evade();
         FollowPlayer();
+        RotateToEvade();
     }
 
     void DetectObstacle()
@@ -35,18 +36,16 @@ public class BhanuPath : MonoBehaviour
         {
             if(_hit.collider.gameObject.layer == 11)
             {
-                _isFollowingPlayer = false;
                 _obstacleDetected = true;
             }
         }
         else
         {
-            _isFollowingPlayer = true;
             _obstacleDetected = false;
         }
     }
 
-    void Evade()
+    void RotateToEvade()
     {
         if(_obstacleDetected)
         {
@@ -61,7 +60,6 @@ public class BhanuPath : MonoBehaviour
 
         if((transform.position - _playerToLookAt.position).magnitude > _offset && _isFollowingPlayer)
         {
-            //TODO For some reason movement in z axis is not stopping even after this is stopped, figure it out
             transform.Translate(0f , 0f , _moveSpeed * Time.deltaTime);
         }
     }
